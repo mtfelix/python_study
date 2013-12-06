@@ -93,5 +93,41 @@ Redsheep's Python note.
     Variables defined inside a module are called attributes of the modules. We've seen that objects
     have atrributes too: for example, most objects have a __doc__ attribute, some functions have a __annotations__ attribute.
     Attributes are accessed using the dot operator(.).
-6. 
-   
+6. How to deal with file open fail?
+    Use try .. except like this:
+        try:
+            f = open(filename, 'r')
+        except:
+            print ("can not open file named", filename)
+7. The power of translate method of string.
+    def text_to_words(the_text):
+        """ Return a list of words with all punctuation removed,
+            and all in lowercase.
+        """
+        my_substitution = the_text.maketrans(
+        # if you find any of these
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&()*+,-./:;<=>?@[]^_‘{|}~",
+        # Replace them by these (must have equal length with first str)
+        "abcdefghijklmnopqrstuvwxyz                                        ")
+        
+        #Translate the text now.
+        cleaned_text = the_text.translate(my_substitution)
+        wds = cleaned_text.split()
+        return wds
+    print (text_to_words('"Well, I never!", said Alice.') == ["well", "i", "never","said", "alice"])
+8.  How to represent a null object? Just use 'None'.
+    pre_ele = None
+    for e in ele_list:
+        if e != pre_ele:
+            do_sth
+            pre_ele = e
+        else:
+            do_others
+9. set the default parameters for function.
+    def func(x=0, y=1):
+        return (x,y)
+    print(func()) # (0,1)
+    print(func(5,6)) # (5,6)
+10. 
+11.
+12.
