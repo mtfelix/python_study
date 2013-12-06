@@ -128,6 +128,52 @@ Redsheep's Python note.
         return (x,y)
     print(func()) # (0,1)
     print(func(5,6)) # (5,6)
-10. 
-11.
+10. The sameness  of Class objects
+    Shallow equality: compares only the references, not the contents of the objects
+    p1 = Point(3, 4)
+    p2 = Point(3, 4)
+    p1 is p2 # False
+    p3 = p1
+    p1 is p3 # True
+    
+    Deep equality: compre the contents of the objects.
+    def same_coord(p1, p2):
+        return (p1.x == p2.x) and (p1.y == p2.y)
+    p1 = Point(3, 4)
+    p2 = Point(3, 4)
+    same_coord(p1,p2) # True
+    
+    Beware! By default "==" on (user defined) Class objects does a shallow equality test.
+    p1 = Point(3, 4)
+    p2 = Point(3, 4)
+    (p1 == p2) # False
+    
+    But, By default "==" does a deep equality test on lists.
+    a = [1,2]
+    b = [1,2]
+    a == b  # True
+   
+11. The shallow copy and deep copy of Class objects
+    
+    Shallow copy can copy simple object like Point.
+    import copy
+    p1 = Point(3, 4)
+    p2 = copy.copy(p1)
+    p1 is p2 # False, different object
+    same_coord(p1,p2) # True, contents same
+    
+    But, for complex object like Rectangle, which contains a reference to a Point, 'copy' 
+    doesn't do quite the right thing. It copyies the reference to the Point object. So both
+    the old rec and new one refer to a single Point.
+    
+    
+    Rectangle(corner, height, width) # corner is a Point(x,y) object
+    rec1 = Rectangle(Point(1, 2),10,8)
+    rec2 = copy.copy(rec1)
+    rec1.corner is rec2.corner # True, refer to a single Point.
+    
+    rec3 = copy.deepcopy(rec1) # deepcopy can do the right thing!!
+    rec1.corner is rec3.corner # False, refer to diff Points.
+    
+    
 12.
