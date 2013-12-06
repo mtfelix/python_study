@@ -83,3 +83,15 @@ Redsheep's Python note.
    <===
    
 3. string split and join
+   str = "hfjiang mmyang"
+   names = str.split()
+   glue = ";"
+   glue.join(names)# "hfjiang;mmyang"
+
+4. How are namespaces, files and modules related?
+5. Attributes and the dot operator
+    Variables defined inside a module are called attributes of the modules. We've seen that objects
+    have atrributes too: for example, most objects have a __doc__ attribute, some functions have a __annotations__ attribute.
+    Attributes are accessed using the dot operator(.).
+6. 
+   
