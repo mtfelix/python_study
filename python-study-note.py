@@ -70,6 +70,16 @@ Redsheep's Python note.
     In general, we recommend that you write pure functions whenever it is reasonable to do so and
     resort to modifiers only if there is a compelling advantage. This approach might be called a 
     functional programming style.
+    
+    The important pattern for pure function:
+    <begin>
+    initialize a result variable to be an empty list
+    loop
+        create a new element
+        append it to result
+    return the result
+    <end>
+    
    <===
    
-3.
+3. string split and join
