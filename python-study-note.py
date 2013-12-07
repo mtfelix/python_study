@@ -226,7 +226,9 @@ Redsheep's Python note.
         print(mydic["mmyang"])#['boy or girl', 'boss']
         
         
-    (6) Dict can represent sparse matrix efficiently
+    (6) Dict can represent sparse matrix efficiently.
+        (I have seen the more sophisticated version of matrix implemention 
+        in Coursera "Coding the Matrix")
         The list of lists representation:
             matrix = [[0,0,1,0,0],
                       [0,1,0,0,0],
@@ -243,7 +245,3 @@ Redsheep's Python note.
             matrix.get((1,3), 0) # return 0
         The first argument is the key; the second argument is the value 'get' should return if the key
         is not in the dictionary.
-    (7) 
-    (8) 
-13. 
-14. 
