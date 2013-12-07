@@ -94,11 +94,19 @@ Redsheep's Python note.
     have atrributes too: for example, most objects have a __doc__ attribute, some functions have a __annotations__ attribute.
     Attributes are accessed using the dot operator(.).
 6. How to deal with file open fail?
+    
     Use try .. except like this:
         try:
             f = open(filename, 'r')
         except:
             print ("can not open file named", filename)
+            
+    But if we want to check if a file exists, we can use os.path module:
+    import os
+    # the preferred way to check if a file exists
+    if os.path.isfile("c:/temp/yourfile.txt"):
+        ...
+    
 7. The power of translate method of string.
     def text_to_words(the_text):
         """ Return a list of words with all punctuation removed,
@@ -176,4 +184,66 @@ Redsheep's Python note.
     rec1.corner is rec3.corner # False, refer to diff Points.
     
     
-12.
+12. Dict
+    (0) string, list, tuple are sequence types, which use integers as indices to access
+        values they contained within them. Dict is not sequence type, so we can't 
+        index or slice a dictionary.
+    (1) Keys can be any immutable type, values can be any type.
+    (2) The empty dictionary is denoted {}
+        mydict = {}
+    (3) The order of the pairs(key:value) is unpredictable. Since Python uses complex
+        algorithms, designed for very fast access, to determine where the key:value pairs 
+        are stored in a dictionary.
+    (4) Dict vs. Tuple.
+        You might wonder why we use dictionaries at all when the same concept of mapping a key
+        to a value could be implemented using a list of tuples. The reason is dictionaries are 
+        very fast, implemented using a technique called "hasing", which allow us to access a value
+        very quickly. By contrast, the list of tuples implementation is slow. If we wanted to
+        find a value associated with a key, we would have to iterate over every tuple, checking the 0th
+        element. What if the key wasn't even in the list? We would have to get to the end of it to find out!
+    (5) Aliasing and copying.
+        As in the case of lists, because dictionaries are mutablem we need to be aware of aliasing.
+        Whenever two variables refer to the same object, changes to one affect the other.
+        
+        If we want to modify a dictionary and keep a copy of the original, use the 'copy' method. 
+        op = {"up": down", "right":"wrong"}
+        alias = op
+        copy = op.copy() # shallow copy
+        copy["right"] = "left"
+        op["right"] # "wrong"
+        alias["right"] = "bad"
+        op["right"] # "bad"
+        
+        But, how to do deep copy? Dict has no deepcopy method (for now??), we can use 
+        the deepcopy of copy module.
+        import copy
+        mydic = {"hfjiang":[2,3,4,5], "mmyang":["girl","boss"]}
+        dcopy = copy.deepcopy(mydic)
+        dcopy["mmyang"][0] = "boy"
+        print(mydic["mmyang"]) # ['girl', 'boss']
+        scopy = mydic.copy()
+        scopy["mmyang"][0] = "boy or girl"
+        print(mydic["mmyang"])#['boy or girl', 'boss']
+        
+        
+    (6) Dict can represent sparse matrix efficiently
+        The list of lists representation:
+            matrix = [[0,0,1,0,0],
+                      [0,1,0,0,0],
+                      [0,0,0,0,0],
+                      [0,0,0,0,8]
+                    ]
+        The dict representation:
+            matrix = {(0,2):1, (1,1):1, (3,3):8}
+        There is one problem. If we specify an elementary that is zero, we get an error, because there 
+        is no entry in the dictionary with that key:
+            matrix[(1,3)] # KeyError: (1,3)
+        The get method solves this problem:
+            matrix.get((0,2), 0) # return 1
+            matrix.get((1,3), 0) # return 0
+        The first argument is the key; the second argument is the value 'get' should return if the key
+        is not in the dictionary.
+    (7) 
+    (8) 
+13. 
+14. 
