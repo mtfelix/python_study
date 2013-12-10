@@ -245,3 +245,18 @@ Redsheep's Python note.
             matrix.get((1,3), 0) # return 0
         The first argument is the key; the second argument is the value 'get' should return if the key
         is not in the dictionary.
+13. The comma in print
+    for i in range(0,5):
+        print(i)
+    #output
+    0
+    1
+    2
+    3
+    4
+    for i in range(0,5):
+        print(i),
+    #output
+    0 1 2 3 4
+
+14. 
