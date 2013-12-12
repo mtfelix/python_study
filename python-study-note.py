@@ -258,5 +258,6 @@ Redsheep's Python note.
         print(i),
     #output
     0 1 2 3 4
-
+    
+    NB: It seems that Python3 doesn't work like this!
 14. 
